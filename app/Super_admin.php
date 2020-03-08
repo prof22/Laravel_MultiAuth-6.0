@@ -6,11 +6,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Admin extends Authenticatable
+class Super_admin extends Authenticatable
 {
 
 
-        protected $guard = 'admin';
+        protected $guard = 'super_admin';
 
         use Notifiable;
 

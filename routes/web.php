@@ -13,23 +13,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('welcome');
+});
 
-Route::view('/', 'welcome');
 Auth::routes();
-
-Route::get('/login/admin', 'Auth\LoginController@showAdminLoginForm');
-Route::get('/login/writer', 'Auth\LoginController@showWriterLoginForm');
-Route::get('/register/admin', 'Auth\RegisterController@showAdminRegisterForm');
-Route::get('/register/writer', 'Auth\RegisterController@showWriterRegisterForm');
-
-Route::post('/login/admin', 'Auth\LoginController@adminLogin');
-Route::post('/login/writer', 'Auth\LoginController@writerLogin');
-Route::post('/register/admin', 'Auth\RegisterController@createAdmin');
-Route::post('/register/writer', 'Auth\RegisterController@createWriter');
-
-Route::view('/home', 'home')->middleware('auth');
-Route::view('/admin', 'admin');
-Route::view('/writer', 'writer');
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('logout/', 'Auth\LoginController@logout')->name('user.logout');
+Route::prefix('admin')->group(function(){
+    Route::get('login', 'Auth\AdminLoginController@Showlogin')->name('admin.login');
+    Route::post('login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
+    Route::get('logout/', 'Auth\AdminLoginController@logout')->name('admin.logout');
+    Route::get('dashboard','Admin\AdminController@dashboard')->name('admin.dashboard');
+});
+Route::prefix('super_admin')->group(function(){
+    Route::get('login', 'Auth\SuperAdminLoginController@Showlogin')->name('super_admin.login');
+    Route::post('login', 'Auth\SuperAdminLoginController@login')->name('super_admin.login.submit');
+    Route::get('logout/', 'Auth\SuperAdminLoginController@logout')->name('super_admin.logout');
+    Route::get('dashboard','Super_admin\SuperAdminController@super_dashboard')->name('super_admin.dashboard');
+});

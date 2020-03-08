@@ -5,13 +5,13 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Dashboard</div>
+                    <div class="card-header">Admin Dashboard</div>
 
                     <div class="card-body">
-                         Hi there, regular user
+                        Hi boss!
                     </div>
 
-                    <a href="{{route('user.logout')}}"> Logout </a>
+                    <a href="{{route('admin.logout')}}"> Logout </a>
                 </div>
             </div>
         </div>

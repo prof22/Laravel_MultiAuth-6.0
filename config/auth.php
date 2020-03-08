@@ -44,9 +44,9 @@ return [
             'driver' => 'session',
             'provider' => 'admins',
         ],
-        'writer' => [
+        'super_admin' => [
             'driver' => 'session',
-            'provider' => 'writers',
+            'provider' => 'super_admins',
         ],
 
         'api' => [
@@ -82,9 +82,9 @@ return [
             'driver' => 'eloquent',
             'model' => App\Admin::class,
         ],
-        'writers' => [
+        'super_admins' => [
             'driver' => 'eloquent',
-            'model' => App\Writer::class,
+            'model' => App\Super_admin::class,
         ],
 
         // 'users' => [
@@ -114,6 +114,16 @@ return [
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
+        ],
+        'admins' => [
+            'provider' => 'admins',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+        'super_admins' => [
+            'provider' => 'super_admins',
+            'table' => 'password_resets',
+            'expire' => 60,
         ],
     ],
 
